@@ -1,8 +1,6 @@
 import Programs.Randomizer;
-import Programs.Sorting.BaseClass;
-import Programs.Sorting.InsertionSort;
-import Programs.Sorting.MergeInsertSort;
-import Programs.Sorting.MergeSort;
+
+import Programs.Sorting.*;
 
 import java.util.*;
 
@@ -63,15 +61,18 @@ public  class Main {
         TestObjects[2] = new MergeInsertSort(16);
 
         for (int i = 0; i < 10; i++) {
-            List<Integer> Data2 = new ArrayList<>();
-            for (int j = 0; j < 10000000; j++){
-                Data2.add(i);
-            }
-            Collections.shuffle(Data2);
-            int[] Data3 = new int[10000000];
-            for (int j = 0; j < 10000000; j++){
-                Data3[i] = Data2.get(i);
-            }
+            // Distinct
+//            List<Integer> Data2 = new ArrayList<>();
+//            for (int j = 0; j < 10000000; j++){
+//                Data2.add(i);
+//            }
+//            Collections.shuffle(Data2);
+//            int[] Data3 = new int[10000000];
+//            for (int j = 0; j < 10000000; j++){
+//                Data3[i] = Data2.get(i);
+//            }
+            // Non-Distinct
+            int[] Data3 = Randomizer.randomArray(10000000,1000);
 
             for (BaseClass o: TestObjects) {
                 o.runTest(Arrays.copyOf(Data3,Data3.length));
