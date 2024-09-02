@@ -2,6 +2,7 @@ import Programs.Randomizer;
 
 import Programs.Sorting.*;
 
+import javax.swing.plaf.basic.BasicToolBarSeparatorUI;
 import java.util.*;
 
 public  class Main {
@@ -55,32 +56,70 @@ public  class Main {
 //        test3.runTest(Arrays.copyOf(Data3,Data3.length));
 
         // Multiple Testing
-        BaseClass[] TestObjects = new BaseClass[4];
-        TestObjects[0] = new MergeSort();
-        TestObjects[1] = new MergeInsertSort(8);
-        TestObjects[2] = new MergeInsertSort(16);
-        TestObjects[3] = new MergeInsertSort(100);
+//        BaseClass[] TestObjects = new BaseClass[4];
+//        TestObjects[0] = new MergeSort();
+//        TestObjects[1] = new MergeInsertSort(4);
+//        TestObjects[2] = new MergeInsertSort(6);
+//        TestObjects[3] = new MergeInsertSort(8);
+//
+//        for (int i = 0; i < 10; i++) {
+//            // Distinct
+////            List<Integer> Data2 = new ArrayList<>();
+////            for (int j = 0; j < 10000000; j++){
+////                Data2.add(i);
+////            }
+////            Collections.shuffle(Data2);
+////            int[] Data3 = new int[10000000];
+////            for (int j = 0; j < 10000000; j++){
+////                Data3[i] = Data2.get(i);
+////            }
+//            // Non-Distinct
+//            int[] Data3 = Randomizer.randomArray(10000000,1000);
+//
+//            for (BaseClass o: TestObjects) {
+//                o.runTest(Arrays.copyOf(Data3,Data3.length));
+//            }
+//        }
+//        for (BaseClass o: TestObjects) {
+//            o.printAverage();
+//        }
 
+        // Varying N
+//        MergeInsertSort VaryN = new MergeInsertSort(100,0);
+//        long[] KeyTotal = new long[20];
+//        long[] TimeTotal = new long[20];
+//        for (int i = 0; i < 5; i++) {
+//            int[] Data3 = Randomizer.randomArray(10000000,10000);
+//            for (int j = 0; j < 20; j++) {
+//                VaryN.setN(j*5);
+//                VaryN.runTest(Arrays.copyOf(Data3,Data3.length));
+//                KeyTotal[j] += VaryN.getKeyCompare()[j+(i*20)];
+//                TimeTotal[j] += VaryN.getTimeTaken()[j+(i*20)];
+//            }
+//        }
+//        for (int i = 0; i < 20; i++) {
+//            KeyTotal[i] /= 5;
+//            TimeTotal[i] /= 5;
+//        }
+//        System.out.println(Arrays.toString(KeyTotal));
+//        System.out.println(Arrays.toString(TimeTotal));
+        MergeInsertSort VaryN = new MergeInsertSort(100,0);
+        long[] KeyTotal = new long[10];
+        long[] TimeTotal = new long[10];
         for (int i = 0; i < 10; i++) {
-            // Distinct
-//            List<Integer> Data2 = new ArrayList<>();
-//            for (int j = 0; j < 10000000; j++){
-//                Data2.add(i);
-//            }
-//            Collections.shuffle(Data2);
-//            int[] Data3 = new int[10000000];
-//            for (int j = 0; j < 10000000; j++){
-//                Data3[i] = Data2.get(i);
-//            }
-            // Non-Distinct
-            int[] Data3 = Randomizer.randomArray(10000000,1000);
-
-            for (BaseClass o: TestObjects) {
-                o.runTest(Arrays.copyOf(Data3,Data3.length));
+            int[] Data3 = Randomizer.randomArray(10000000,10000);
+            for (int j = 0; j < 10; j++) {
+                VaryN.setN(j*2 + 40);
+                VaryN.runTest(Arrays.copyOf(Data3,Data3.length));
+                KeyTotal[j] += VaryN.getKeyCompare()[j+(i*10)];
+                TimeTotal[j] += VaryN.getTimeTaken()[j+(i*10)];
             }
         }
-        for (BaseClass o: TestObjects) {
-            o.printAverage();
+        for (int i = 0; i < 10; i++) {
+            KeyTotal[i] /= 10;
+            TimeTotal[i] /= 10;
         }
+        System.out.println(Arrays.toString(KeyTotal));
+        System.out.println(Arrays.toString(TimeTotal));
     }
 }

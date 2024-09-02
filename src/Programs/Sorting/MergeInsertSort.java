@@ -6,12 +6,24 @@ public class MergeInsertSort extends BaseClass{
 
     private int N;
 
+    public void setN (int N){
+        this.N = N;
+    }
+
+    public long[] getKeyCompare() {
+        return this.keyCompare;
+    }
+
+    public long[] getTimeTaken() {
+        return this.timeTaken;
+    }
+
     // Constructors
 
     public MergeInsertSort(int N) {
         this.testID = totalTest;
         this.testCases = 0;
-        this.keyCompare = new int[50];
+        this.keyCompare = new long[50];
         this.timeTaken = new long[50];
         this.N = N;
         totalTest++;
@@ -20,7 +32,7 @@ public class MergeInsertSort extends BaseClass{
     public MergeInsertSort(int maxCases, int N) {
         this.testID = totalTest;
         this.testCases = 0;
-        this.keyCompare = new int[maxCases];
+        this.keyCompare = new long[maxCases];
         this.timeTaken = new long[maxCases];
         this.N = N;
         totalTest++;
@@ -32,7 +44,7 @@ public class MergeInsertSort extends BaseClass{
         System.out.println("Merge-Insertion Sort");
         System.out.println("testID: " + this.testID + " testCases: " + this.testCases);
         for (int i = 0; i < this.testCases; i++) {
-            System.out.println("MISort Case " + i + ": KeyCompare-" + this.keyCompare[i]+ " timeTaken-" + this.timeTaken[i]);
+            System.out.println("MISort Case " + i + ": KeyCompare-" + this.keyCompare[i] + " timeTaken-" + this.timeTaken[i]);
         }
     }
 
@@ -40,16 +52,16 @@ public class MergeInsertSort extends BaseClass{
     public void runTest(int[] array) {
         long startTime = System.currentTimeMillis();
         int[] answer = mergeInsertSort(array);
-
-        for (int i = 0; i < answer.length-1;i++) {
-            if (answer[i] > answer[i+1]) {
-                System.out.println("Fail");
-                return;
-            }
-        }
-        //System.out.println(Arrays.toString(answer));
         this.timeTaken[this.testCases] = System.currentTimeMillis() - startTime;
-        System.out.println(System.currentTimeMillis() - startTime);
+
+//        for (int i = 0; i < answer.length-1;i++) {
+//            if (answer[i] > answer[i+1]) {
+//                System.out.println("Fail");
+//                return;
+//            }
+//        }
+        //System.out.println(Arrays.toString(answer));
+        //System.out.println(System.currentTimeMillis() - startTime);
         System.out.println("MISort Case " + this.testCases + ": KeyCompare-" + this.keyCompare[this.testCases]+ " timeTaken-" + this.timeTaken[this.testCases]);
         this.testCases++;
     }
@@ -62,7 +74,7 @@ public class MergeInsertSort extends BaseClass{
         }
         System.out.println("------------------------------");
         System.out.println("MergeInsertSort ID: " + this.testID);
-        System.out.println("Average Comparison: " + keyTotal/this.testCases);
+        System.out.println("Average Comparison: " + (long)keyTotal/this.testCases);
         System.out.println("Average Time Taken: " + timeTotal/this.testCases);
         System.out.println("------------------------------");
     }

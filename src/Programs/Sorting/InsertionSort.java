@@ -9,7 +9,7 @@ public class InsertionSort extends BaseClass{
     public InsertionSort(){
         this.testID = totalTest;
         this.testCases = 0;
-        this.keyCompare = new int[50];
+        this.keyCompare = new long[50];
         this.timeTaken = new long[50];
         totalTest++;
     }
@@ -17,7 +17,7 @@ public class InsertionSort extends BaseClass{
     public InsertionSort(int maxCases){
         this.testID = totalTest;
         this.testCases = 0;
-        this.keyCompare = new int[maxCases];
+        this.keyCompare = new long[maxCases];
         this.timeTaken = new long[maxCases];
         totalTest++;
     }
@@ -44,7 +44,7 @@ public class InsertionSort extends BaseClass{
         }
         //System.out.println(Arrays.toString(answer));
         this.timeTaken[this.testCases] = System.currentTimeMillis() - startTime;
-        System.out.println(System.currentTimeMillis() - startTime);
+        //System.out.println(System.currentTimeMillis() - startTime);
         System.out.println("ISort Case " + this.testCases + ": KeyCompare-" + this.keyCompare[this.testCases]+ " timeTaken-" + this.timeTaken[this.testCases]);
         this.testCases++;
     }
@@ -57,8 +57,8 @@ public class InsertionSort extends BaseClass{
         }
         System.out.println("------------------------------");
         System.out.println("InsertionSort ID: " + this.testID);
-        System.out.println("Average Comparison: " + (double)(keyTotal/this.testCases));
-        System.out.println("Average Time Taken: " + (double)(timeTotal/this.testCases));
+        System.out.println("Average Comparison: " + (long)(keyTotal/this.testCases));
+        System.out.println("Average Time Taken: " + (timeTotal/this.testCases));
         System.out.println("------------------------------");
     }
 

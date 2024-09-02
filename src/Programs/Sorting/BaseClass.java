@@ -1,7 +1,7 @@
 package Programs.Sorting;
 
 public abstract class BaseClass {
-    protected int[] keyCompare;
+    protected long[] keyCompare;
     protected long[] timeTaken;
     protected int testCases;
     protected int testID;
