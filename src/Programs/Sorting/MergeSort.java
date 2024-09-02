@@ -91,15 +91,11 @@ public class MergeSort extends BaseClass{
         // Merging when 1 array is emptied
         if (right < rightRecursion.length){
             while (right < rightRecursion.length){
-                returnArray[index] = rightRecursion[right];
-                index++;
-                right++;
+                returnArray[index++] = rightRecursion[right++];
             }
         } else {
             while (left < leftRecursion.length){
-                returnArray[index] = leftRecursion[left];
-                index++;
-                left++;
+                returnArray[index++] = leftRecursion[left++];
             }
         }
         return returnArray;

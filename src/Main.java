@@ -55,10 +55,11 @@ public  class Main {
 //        test3.runTest(Arrays.copyOf(Data3,Data3.length));
 
         // Multiple Testing
-        BaseClass[] TestObjects = new BaseClass[3];
+        BaseClass[] TestObjects = new BaseClass[4];
         TestObjects[0] = new MergeSort();
         TestObjects[1] = new MergeInsertSort(8);
         TestObjects[2] = new MergeInsertSort(16);
+        TestObjects[3] = new MergeInsertSort(100);
 
         for (int i = 0; i < 10; i++) {
             // Distinct
