@@ -85,41 +85,72 @@ public  class Main {
 //        }
 
         // Varying N
-//        MergeInsertSort VaryN = new MergeInsertSort(100,0);
+//        MergeInsertSort VaryN = new MergeInsertSort(2000,0);
 //        long[] KeyTotal = new long[20];
 //        long[] TimeTotal = new long[20];
-//        for (int i = 0; i < 5; i++) {
-//            int[] Data3 = Randomizer.randomArray(10000000,10000);
+//        for (int i = 0; i < 100; i++) {
+//            int[] Data3 = Randomizer.randomArray(100000,10000);
 //            for (int j = 0; j < 20; j++) {
-//                VaryN.setN(j*5);
+//                VaryN.setN(j);
 //                VaryN.runTest(Arrays.copyOf(Data3,Data3.length));
 //                KeyTotal[j] += VaryN.getKeyCompare()[j+(i*20)];
 //                TimeTotal[j] += VaryN.getTimeTaken()[j+(i*20)];
 //            }
 //        }
 //        for (int i = 0; i < 20; i++) {
-//            KeyTotal[i] /= 5;
-//            TimeTotal[i] /= 5;
+//            KeyTotal[i] /= 100;
+//            TimeTotal[i] /= 100;
 //        }
 //        System.out.println(Arrays.toString(KeyTotal));
 //        System.out.println(Arrays.toString(TimeTotal));
-        MergeInsertSort VaryN = new MergeInsertSort(100,0);
-        long[] KeyTotal = new long[10];
-        long[] TimeTotal = new long[10];
-        for (int i = 0; i < 10; i++) {
-            int[] Data3 = Randomizer.randomArray(10000000,10000);
-            for (int j = 0; j < 10; j++) {
-                VaryN.setN(j*2 + 40);
-                VaryN.runTest(Arrays.copyOf(Data3,Data3.length));
-                KeyTotal[j] += VaryN.getKeyCompare()[j+(i*10)];
-                TimeTotal[j] += VaryN.getTimeTaken()[j+(i*10)];
+//        MergeInsertSort VaryN = new MergeInsertSort(100,0);
+//        long[] KeyTotal = new long[10];
+//        long[] TimeTotal = new long[10];
+//        for (int i = 0; i < 10; i++) {
+//            int[] Data3 = Randomizer.randomArray(10000000,10000);
+//            for (int j = 0; j < 10; j++) {
+//                VaryN.setN(j*2 + 40);
+//                VaryN.runTest(Arrays.copyOf(Data3,Data3.length));
+//                KeyTotal[j] += VaryN.getKeyCompare()[j+(i*10)];
+//                TimeTotal[j] += VaryN.getTimeTaken()[j+(i*10)];
+//            }
+//        }
+//        for (int i = 0; i < 10; i++) {
+//            KeyTotal[i] /= 10;
+//            TimeTotal[i] /= 10;
+//        }
+//        System.out.println(Arrays.toString(KeyTotal));
+//        System.out.println(Arrays.toString(TimeTotal));
+
+
+        // Testing Space Complexity Differences
+
+        BaseClass[] TestCases = new BaseClass[2];
+        TestCases[0] = new MergeInsertSort(8);
+        TestCases[1] = new MISortByRef(8);
+
+        for (int i = 0; i < 20; i++) {
+            // Distinct
+//            List<Integer> Data2 = new ArrayList<>();
+//            for (int j = 0; j < 10000000; j++){
+//                Data2.add(i);
+//            }
+//            Collections.shuffle(Data2);
+//            int[] Data3 = new int[10000000];
+//            for (int j = 0; j < 10000000; j++){
+//                Data3[i] = Data2.get(i);
+//            }
+            // Non-Distinct
+            int[] Data3 = Randomizer.randomArray(10000000,1000);
+
+            for (BaseClass o: TestCases) {
+                o.runTest(Data3);
             }
         }
-        for (int i = 0; i < 10; i++) {
-            KeyTotal[i] /= 10;
-            TimeTotal[i] /= 10;
+        for (BaseClass o: TestCases) {
+            o.printAverage();
         }
-        System.out.println(Arrays.toString(KeyTotal));
-        System.out.println(Arrays.toString(TimeTotal));
+
+
     }
 }

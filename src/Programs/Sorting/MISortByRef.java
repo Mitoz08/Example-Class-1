@@ -2,7 +2,7 @@ package Programs.Sorting;
 
 import java.util.Arrays;
 
-public class MergeInsertSort extends BaseClass{
+public class MISortByRef extends BaseClass{
 
     private int N;
 
@@ -12,7 +12,7 @@ public class MergeInsertSort extends BaseClass{
 
     // Constructors
 
-    public MergeInsertSort(int N) {
+    public MISortByRef(int N) {
         this.testID = totalTest;
         this.testCases = 0;
         this.keyCompare = new long[50];
@@ -21,7 +21,7 @@ public class MergeInsertSort extends BaseClass{
         totalTest++;
     }
 
-    public MergeInsertSort(int maxCases, int N) {
+    public MISortByRef(int maxCases, int N) {
         this.testID = totalTest;
         this.testCases = 0;
         this.keyCompare = new long[maxCases];
@@ -44,7 +44,7 @@ public class MergeInsertSort extends BaseClass{
     public void runTest(int[] array) {
         //long startTime = System.currentTimeMillis();
         long startTime = System.nanoTime();
-        int[] answer = mergeInsertSort(array);
+        int[] answer = mergeInsertSortByRef(array,0,array.length);
         this.timeTaken[this.testCases] = System.nanoTime() - startTime;
 
 //        for (int i = 0; i < answer.length-1;i++) {
@@ -73,30 +73,33 @@ public class MergeInsertSort extends BaseClass{
     }
 
 
-    private int[] mergeInsertSort(int[] array) {
+    private int[] mergeInsertSortByRef(int[] array, int start, int end) {
+        int returnSize = end-start;
+        int midPoint = start + returnSize/2;
+
         // Insertion Sort
-        if (array.length <= this.N) {
-            for (int i = 1; i < array.length;i++){
+        if (returnSize <= this.N) {
+            int[] returnArray = Arrays.copyOfRange(array,start,end);
+            for (int i = 1; i < returnArray.length;i++){
                 for (int j = i; j > 0; j--) {
                     this.keyCompare[this.testCases]++;
-                    if (array[j] > array[j-1]) break;
-                    int temp = array[j];
-                    array[j] = array[j-1];
-                    array[j-1] = temp;
+                    if (returnArray[j] > returnArray[j-1]) break;
+                    int temp = returnArray[j];
+                    returnArray[j] = returnArray[j-1];
+                    returnArray[j-1] = temp;
                 }
             }
-            return array;
+            return returnArray;
         }
 
         // Merge Sort
         // Base Case
-        if (array.length == 1) return array;
-
-        int[] returnArray = new int[array.length];
+        if (returnSize == 1) return new int[] {array[start]} ;
 
         // Divide and Conquer
-        int[] leftRecursion = mergeInsertSort(Arrays.copyOfRange(array,0,array.length/2));
-        int[] rightRecursion = mergeInsertSort(Arrays.copyOfRange(array,array.length/2,array.length));
+        int[] leftRecursion = mergeInsertSortByRef(array,start,midPoint);
+        int[] rightRecursion = mergeInsertSortByRef(array,midPoint,end);
+        int[] returnArray = new int[returnSize];
 
         // Merging
         int left = 0, right = 0, index = 0;

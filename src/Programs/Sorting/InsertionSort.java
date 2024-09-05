@@ -58,7 +58,7 @@ public class InsertionSort extends BaseClass{
         System.out.println("------------------------------");
         System.out.println("InsertionSort ID: " + this.testID);
         System.out.println("Average Comparison: " + (long)(keyTotal/this.testCases));
-        System.out.println("Average Time Taken: " + (timeTotal/this.testCases));
+        System.out.println("Average Time Taken: " + (long)(timeTotal/this.testCases));
         System.out.println("------------------------------");
     }
 

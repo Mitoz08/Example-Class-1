@@ -8,6 +8,13 @@ public abstract class BaseClass {
 
     protected static int totalTest = 0;
 
+    public long[] getKeyCompare() {
+        return this.keyCompare;
+    }
+    public long[] getTimeTaken() {
+        return this.timeTaken;
+    }
+
     public abstract void printDetails();
     public abstract void runTest(int[] array);
     public abstract void printAverage();
